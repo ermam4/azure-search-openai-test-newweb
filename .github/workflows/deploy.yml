@@ -1,0 +1,53 @@
+name: Deploy RAG App to Azure App Service
+
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+env:
+  AZURE_WEBAPP_NAME: 'astro23r2chatwebpage' # Replace with your exact App Service name
+  PYTHON_VERSION: '3.11'
+  NODE_VERSION: '20'
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ env.NODE_VERSION }}
+
+      - name: Build React Frontend
+        run: |
+          cd app/frontend
+          npm ci
+          npm run build
+          cd ../..
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: ${{ env.PYTHON_VERSION }}
+
+      - name: Package Backend
+        run: |
+          cd app/backend
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt --target="../backend_packages"
+          cd ../..
+          mkdir deploy_package
+          cp -r app/backend/* deploy_package/
+          cp -r app/backend_packages/* deploy_package/
+          mkdir -p deploy_package/static
+          cp -r app/backend/static/* deploy_package/static/ 2>/dev/null || true
+
+      - name: Deploy to Azure WebApp
+        uses: azure/webapps-deploy@v3
+        with:
+          app-name: ${{ env.AZURE_WEBAPP_NAME }}
+          publish-profile: ${{ secrets.AZURE_WEBAPP_PUBLISH_PROFILE }}
+          package: deploy_package
