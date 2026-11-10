@@ -1,6 +1,6 @@
 {
-    "pageTitle": "WMS AI Bot",
-    "headerTitle": "WMS AI Bot 2.0 (TEST)",
+    "pageTitle": "Azure OpenAI + AI Search",
+    "headerTitle": "Azure OpenAI + AI Search",
     "chat": "Chat",
     "login": "Login",
     "logout": "Logout",
@@ -32,13 +32,13 @@
         "fileDeleted": "File deleted"
     },
     "developerSettings": "Developer settings",
-    "chatEmptyStateTitle": "Welcome to the WMS world!",
-    "chatEmptyStateSubtitle": "Ask anything about Astro WMS 26R2",
+    "chatEmptyStateTitle": "Chat with your data",
+    "chatEmptyStateSubtitle": "Ask anything or try an example",
     "defaultExamples": {
-        "1": "What is Astro WMS?",
-        "2": "What is new in the Astro version 26R2?",
-        "3": "How can I get access to WMS AI Bot?",
-        "placeholder": "Type a new question (e.g. how is the inbound process with Astro WMS?)"
+        "1": "What is included in my Northwind Health Plus plan that is not in standard?",
+        "2": "What happens in a performance review?",
+        "3": "What does a Product Manager do?",
+        "placeholder": "Type a new question (e.g. does my plan cover annual eye exams?)"
     },
     "askTitle": "Ask your data",
     "multimodalExamples": {
