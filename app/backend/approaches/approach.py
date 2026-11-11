@@ -309,7 +309,7 @@ class Approach(ABC):
                 query_caption="extractive|highlight-false" if use_semantic_captions else None,
                 query_rewrites="generative" if use_query_rewriting else None,
                 vector_queries=search_vectors,
-                query_type=QueryType.SEMANTIC,
+                query_type=QueryType.SIMPLE,#query_type=QueryType.SEMANTIC,
                 query_language=self.query_language,
                 query_speller=self.query_speller,
                 semantic_configuration_name="default",
